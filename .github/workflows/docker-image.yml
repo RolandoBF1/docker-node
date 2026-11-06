@@ -19,11 +19,11 @@ jobs:
 
       - name: Save Docker Image as TAR
         # Guardamos la imagen en un archivo .tar
-        run: docker save node-app:latest -o node-app-image.tar
+        run: docker save node-app-26-slim:latest -o node-app-26-slim:latest.tar
 
       - name: Upload Artifact
         # Subimos el archivo para que lo puedas descargar
         uses: actions/upload-artifact@v4
         with:
-          name: node-app-image
-          path: node-app-image.tar
+          name: node-app-26-slim:latest
+          path: node-app-26-slim:latest.tar
