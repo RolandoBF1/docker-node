@@ -1,0 +1,29 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: # Esto te permite ejecutarlo manualmente con un botón
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build the Docker Image
+        # IMPORTANTE: Apuntamos al Dockerfile correcto y le damos un nombre a la imagen
+        run: docker build . --file 26/alpine3.24/Dockerfile --tag node-app:latest
+
+      - name: Save Docker Image as TAR
+        # Guardamos la imagen en un archivo .tar
+        run: docker save node-app:latest -o node-app-image.tar
+
+      - name: Upload Artifact
+        # Subimos el archivo para que lo puedas descargar
+        uses: actions/upload-artifact@v4
+        with:
+          name: node-app-image
+          path: node-app-image.tar
