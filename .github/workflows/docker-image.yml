@@ -15,7 +15,7 @@ jobs:
 
       - name: Build the Docker Image
         # IMPORTANTE: Apuntamos al Dockerfile correcto y le damos un nombre a la imagen
-        run: docker build . --file 26/alpine3.24/Dockerfile --tag node-app:latest
+        run: docker build . --file 26/bookworm-slim/Dockerfile --tag node-app-26-slim:latest
 
       - name: Save Docker Image as TAR
         # Guardamos la imagen en un archivo .tar
